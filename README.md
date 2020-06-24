@@ -1,6 +1,6 @@
-# faq-phraselator
-Closed-domain, asymmetric FAQ search phraselator.<br>
-The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)). However, this system could in theory be adjsuted to work for any FAQ/low-resource language.
+# esu-faq-phraselator
+Closed-domain, bidirectional FAQ search phraselator built for speech search in Central Alaskan Yup'ik and English.<br>
+The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)). This system was built of previous work which can be found [here](https://github.com/marcusgabrielmartinez/faq-phraselator).
 
 ## Setup Instructions
 This system has a number of dependencies. Running the following commands should take care of these in the least amount of steps.<br>
@@ -12,31 +12,8 @@ virtualenv -p python3 ./env/phraselate-venv/
 source ./env/phraselate-venv/bin/activate
 pip3 install -r ./utils/requirements.txt
 ```
-## Preprocessing
-The base system expects files in a certain format. Scripts are provided to achieve these formats given a JSON dictionary and JSON question file is started with.<br>
-The scripts should be run in the following order, and should output in the utils subdirectory to function correctly.<br>
-```
-python3 process_dict.py [original_dictionary_filename] [output_filename]
-python3 collect_vectors.py [300d GloVe vectors] [processed_dictionary_filename] [output_filename]
-python3 pickle_vectors.py [output_filename] [300d GloVe vectors]
-```
 
 ### Expected File Formats
-- process_dict.py expects a JSON file with the following format:<br>
-```
-...
-{'key': [[['term'], ['translation_1', 'translation_2', ...]]], ...}
-...
-```
-- collect_vectors.py expects a JSON file with the following format (should be output by process_dict.py):<br>
-```
-{
-{'tranlsation_1;translation_2;...': 'term'},
-...
-}
-```
-...as well as the standard 300d 6B release of English Wikipedia GloVe vectors.<br>
-- pickle_vectors.py expects only the standard 300d 6B release of English Wikipedia GloVe vectors.<br>
 - The FAQ JSON file should have the following format, and should be located in the utils subdirectory. An example is included in current utils subdirecotry.:<br>
 This example FAQ file was scraped from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)).
 ```
@@ -48,7 +25,6 @@ This example FAQ file was scraped from the Alaska state government Labor Standar
 ...
 }
 ```
-
 
 ## Running the System
 Once these commands have successfully run and the virtual environment is set up, you can run the following command to open the system's interface.<br>
@@ -75,4 +51,3 @@ python3 phraselate.py --dictionary [collected_vectors_filename] --questions [que
 - [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI)
 - [NumPy](https://numpy.org/)
 - [SciPy](https://docs.scipy.org/doc/scipy/reference/)
-- [English Wikipedia GloVe vectors](https://nlp.stanford.edu/projects/glove/)
