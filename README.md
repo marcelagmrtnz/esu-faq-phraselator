@@ -33,13 +33,8 @@ Note: You must first change the file paths in the script according the provided 
 ./phraselate.sh
 ```
 If you'd like to just run the phraselator script, use the following commands.<br>
-This command corresponds to the search by translation system.<br>
 ```
-python3 phraselate.py --dictionary [collected_vectors_filename] --questions [questions_filename] --vectors [pickled_glove_vectors] --translate
-```
-This command corresponds to the search by English system.<br>
-```
-python3 phraselate.py --dictionary [collected_vectors_filename] --questions [questions_filename] --vectors [pickled_glove_vectors]
+python3 phraselate.py --questions [questions_filename]
 ```
 
 ## References
