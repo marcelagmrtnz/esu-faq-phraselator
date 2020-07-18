@@ -28,7 +28,6 @@ This example FAQ file was scraped from the Alaska state government Labor Standar
 
 ## Running the System
 Once these commands have successfully run and the virtual environment is set up, you can run the following command to open the system's interface.<br>
-Note: You must first change the file paths in the script according the provided isntructions.<br>
 ```
 ./phraselate.sh
 ```
