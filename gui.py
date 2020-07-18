@@ -6,8 +6,7 @@ import sounddevice as sound
 import subprocess
 import wavio
 
-from utils.phraselate import import_questions
-from utils.phraselate import select_question
+from utils.phraselate import import_questions, select_question
 
 def record_query(fps):
     duration = 5.5
@@ -43,16 +42,21 @@ def main():
     questions = []
     with open(sys.argv[1], 'r') as question_file:
         faq = json.load(question_file)
-        compiled_faq = []
+        eng_compiled_faq = []
+        esu_compiled_faq = []
         for q_num, q in faq.items():
-            compiled_faq += [q_num + ') ' + list(q[0].items())[0][0]]
-        faq = '\n'.join(compiled_faq)
+            eng_compiled_faq += [q_num + ') ' + list(q[0].items())[0][0]]
+            esu_compiled_faq += [q_num + ') ' + list(q[1].items())[0][0]]
+        eng_faq = '\n'.join(eng_compiled_faq)
+        esu_faq = '\n'.join(esu_compiled_faq)
 
     fps = 16000
     gui = [
     [simple.Text("Welcome! You can use this phraselator to search through the Alaska State government's frequently asked questions brochure regarding employee rights/benefits.\nThe Alaska State government's webpage where the FAQ is located can be found at https://labor.alaska.gov/lss/whfaq.htm.", font='25')],
-    [simple.Text("If you aren't sure what you can ask, click here to see a listing of possible questions.", font='25'), simple.Button('Questions', font='10')],
+    [simple.Text("If you aren't sure what you can ask, click here (whichever language you prefer) to see a listing of possible questions.", font='25'), simple.Button('English Questions', font='10'), simple.Button("Yup'ik Questions", font=10)],
     [simple.Text("Press the button below to record your question (in English),  and the system will find the closest question. You will have about 5 seconds to record your question.\nIf an appropriate question does not appear in the drop down once you submit, please submit again. If it does, select and confirm to receive the questions and answers.", font='25')],
+    [simple.Text("Below you can choose wheter to search with Yup'ik or English speech.")],
+    [simple.Radio('English', 'search_language', key='english', default='true', font='15'), simple.Radio("Yup'ik", "search_language", key="yupik", font="15")],
     [simple.Button('Record', font='10'), simple.Text("You can also use this tool to upload a WAV file instead. There are five sample question audio files in the resources folder you can select from.", font='25'), simple.Button('Choose File', font='10')],
     [simple.Text('Please select a question...', font='25')],
     [simple.Combo([], key='questions', size=(35, 10), font='25'), simple.Button('Confirm', font='10')],
@@ -80,8 +84,10 @@ def main():
             app['english_ans'].update(update_q[4])
             app['langb_q'].update(update_q[1])
             app['langb_ans'].update(update_q[2])
-        elif gui_event == 'Questions':
-            simple.popup_scrolled(faq, title='Question Listing', font='25')
+        elif gui_event == 'English Questions':
+            simple.popup_scrolled(eng_faq, title='Question Listing', font='25')
+        elif gui_event == "Yup'ik Questions":
+            simple.popup_scrolled(esu_faq, title='Question Listing', font='25')
         elif gui_event == 'Choose File':
             audio_path = simple.popup_get_file("Choose which question you'd like to test. Enter or choose any WAV file in resources.", title='Choose a WAV File', default_path='../resources/', file_types=(('WAV', '*.wav')))
             questions = audio_to_question(audio_path, fps, values['translate'])
