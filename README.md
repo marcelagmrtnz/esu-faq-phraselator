@@ -46,3 +46,6 @@ python3 phraselate.py --questions [questions_filename]
 - [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI)
 - [NumPy](https://numpy.org/)
 - [SciPy](https://docs.scipy.org/doc/scipy/reference/)
+- [KenLM language model](https://github.com/kpu/kenlm)
+- [CAY Morphological Segmenter](https://github.com/giellalt/lang-esu/tree/master)
+- [CMU Wilderness fast alignments](https://github.com/festvox/datasets-CMU_Wilderness)
