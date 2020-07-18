@@ -15,26 +15,30 @@ def record_query(fps):
 
     return query
 
-def run_tts(filename):
+def run_tts(filename, lang):
     # Convert wav bits
     sox_filename = filename.split('.')[0] + '2.' + filename.split('.')[1]
     sox_command = ['sox', filename, '-b', '16', sox_filename]
     subprocess.run(sox_command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     # Run tts with deepspeech
-    command = ['deepspeech', '--model', './utils/deepspeech-0.7.3-models.pbmm', '--scorer', './utils/deepspeech-0.7.3-models.scorer', '--audio', sox_filename]
+    if lang == 'english':
+        command = ['deepspeech', '--model', './utils/deepspeech-0.7.3-models.pbmm', '--scorer', './utils/deepspeech-0.7.3-models.scorer', '--audio', sox_filename]
+    else:
+        command = ['deepspeech', '--model', './utils/esu_model.pbmm', '--scorer', './utils/esu_lm.binary', '--audio', sox_filename]
+        
     process = subprocess.run(command, capture_output=True)
     output = process.stdout.decode()
 
     return output.strip()
 
-def audio_to_question(filename, fps):
+def audio_to_question(filename, fps, lang):
     query_audio = wavio.write(filename, record_query(fps), fps, sampwidth=3)
 
-    query = run_tts(filename)
+    query = run_tts(filename, lang)
 
     # Questions format per question: [score, lang_b_q, lang_b_ans, eng_q, eng_ans]
-    questions = select_question(query.split(), import_questions(sys.argv[1]))
+    questions = select_question(query.split(), import_questions(sys.argv[1]), lang)
     
     return questions
 
@@ -72,7 +76,7 @@ def main():
         if gui_event == simple.WIN_CLOSED:
             break
         elif gui_event == 'Record':
-            questions = audio_to_question('query.wav', fps)
+            questions = audio_to_question('query.wav', fps, values['search_language'])
             app['questions'].update(values=[questions[0][1][3], questions[1][1][3]])
         elif gui_event == 'Confirm':
             for _, question in questions:

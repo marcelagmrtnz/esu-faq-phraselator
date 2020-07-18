@@ -32,10 +32,12 @@ Note: You must first change the file paths in the script according the provided 
 ```
 ./phraselate.sh
 ```
-If you'd like to just run the phraselator script, use the following commands.<br>
+If you'd like to just run the phraselator script, use the following command.<br>
 ```
-python3 phraselate.py --questions [questions_filename]
+python3 phraselate.py [--questions questions_filename] [--query "query string"]
 ```
+- '--questions' is used to specify the FAQ filename
+- '--query' is used to specify the query to be used (this is automatically filled by ASR output if the whole phraselator is used). If only phraselate.py is run, and this flag is not specified, an empty string will be queried.
 
 ## References
 - [NLTK](https://www.nltk.org/)
