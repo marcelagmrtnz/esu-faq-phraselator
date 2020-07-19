@@ -1,4 +1,4 @@
 .DS_Store
 ./env/
-./utils/deepspeech-0.7.3-models.pbmm
-./utils/deepspeech-0.7.3-models.scorer
+utils/deepspeech-0.7.3-models.pbmm
+utils/deepspeech-0.7.3-models.scorer
