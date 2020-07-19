@@ -1,9 +1,9 @@
 import sys
+import subprocess
 import json
 
 import PySimpleGUI as simple
 import sounddevice as sound
-import subprocess
 import wavio
 
 from utils.phraselate import import_questions, select_question
@@ -94,7 +94,7 @@ def main():
             simple.popup_scrolled(esu_faq, title='Question Listing', font='25')
         elif gui_event == 'Choose File':
             audio_path = simple.popup_get_file("Choose which question you'd like to test. Enter or choose any WAV file in resources.", title='Choose a WAV File', default_path='../resources/', file_types=(('WAV', '*.wav')))
-            questions = audio_to_question(audio_path, fps, values['translate'])
+            questions = audio_to_question(audio_path, fps, values['search_language'])
             app['questions'].update(values=[questions[0][1][3], questions[1][1][3]])
             
     app.close()
