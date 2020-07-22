@@ -45,6 +45,7 @@ python3 phraselate.py [--questions questions_filename] [--query "query string"]
 - [deepspeech](https://deepspeech.readthedocs.io/en/v0.7.3/index.html)
 - [deepspeech pretrained model and scorer](https://deepspeech.readthedocs.io/en/v0.7.3/USING.html)
 - [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI)
+- [pydub](https://github.com/jiaaro/pydub/blob/master/API.markdown)
 - [NumPy](https://numpy.org/)
 - [SciPy](https://docs.scipy.org/doc/scipy/reference/)
 - [KenLM language model](https://github.com/kpu/kenlm)
