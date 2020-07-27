@@ -25,7 +25,7 @@ def run_tts(filename, lang):
     if lang == 'english':
         command = ['deepspeech', '--model', './utils/deepspeech-0.7.3-models.pbmm', '--scorer', './utils/deepspeech-0.7.3-models.scorer', '--audio', sox_filename]
     else:
-        command = ['deepspeech', '--model', './utils/esu_model.pbmm', '--scorer', './utils/esu_lm.binary', '--audio', sox_filename]
+        command = ['deepspeech', '--model', './utils/esu_model_500epochs.pbmm', '--scorer', './utils/esu_lm.scorer', '--audio', sox_filename]
         
     process = subprocess.run(command, capture_output=True)
     output = process.stdout.decode()
