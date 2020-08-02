@@ -7,6 +7,9 @@
 # source ./env/phraselate-venv/bin/activate
 # pip3 install -r ./utils/requirements.txt
 
+# Add download for punkt tokenizer
+# Add download for esu models
+
 python3 gui.py ./utils/questions.json
 rm -f *.wav
 rm -rf utils/__pycache__/

@@ -39,11 +39,12 @@ def select_question(asked: list, questions: dict, lang: str) -> dict:
     return sort_scores[:2]
         
 def main(args):
-    top_questions = select_question(args.query.split(), import_questions(args.questions), translate=False)
+    top_questions = select_question(args.query.split(), import_questions(args.questions), args.lang)
     print(top_questions)
 
 if __name__ == '__main__':
     a_parser = argparse.ArgumentParser(description='Compare ASR output/queries to a pre-written FAQ to find closest two questions.')
     a_parser.add_argument('--questions', help='Use this flag to declare the FAQ file.')
     a_parser.add_argument('--query', default='', help='Use this flag to specify a query. Not using this flag results in a blank string being queried.')
+    a_parser.add_argument('--lang', default='english', help='Use this flag to specify a language (yupik or english). The default is english.')
     main(a_parser.parse_args())
