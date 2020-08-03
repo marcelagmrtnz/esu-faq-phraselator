@@ -17,5 +17,3 @@ pip3 install -r ./utils/requirements.txt
 python3 -c "import nltk; nltk.download('punkt');"
 
 echo "DONE!"
-# Re-entering virtual environment
-. ./env/phraselate-venv/bin/activate
