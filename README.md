@@ -6,10 +6,11 @@ The GUI built for this system assumes the system is built for Central Alaskan Yu
 This system has a number of dependencies. Running the following commands should take care of these in the least amount of steps.<br>
 This system has only been tested on an OSX machine.
 ```
-./install.sh
-. env/phraselate-venv/bin/activate
+./downloads.sh
+python3 -m venv ./env/phraselate-venv/
+source ./env/phraselate-venv/bin/activate
+./dependencies.sh
 ```
-If install.sh does not work, running the commands in the script separately should work.
 
 ### Expected File Formats
 - The FAQ JSON file should have the following format, and should be located in the utils subdirectory. An example is included in current utils subdirecotry.:<br>
