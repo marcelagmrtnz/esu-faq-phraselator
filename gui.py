@@ -15,7 +15,7 @@ def record_query(fps):
 
     return query
 
-def run_tts(filename, lang):
+def run_tts(filename, lang, debug=False):
     # Convert wav bits
     sox_filename = filename.split('.')[0] + '2.' + filename.split('.')[1]
     sox_command = ['sox', filename, '-b', '16', sox_filename]
@@ -28,14 +28,20 @@ def run_tts(filename, lang):
         command = ['deepspeech', '--model', './utils/esu_model_500epochs.pbmm', '--scorer', './utils/esu_lm.scorer', '--audio', sox_filename]
         
     process = subprocess.run(command, capture_output=True)
+    if debug:
+        print(process.stderr)
+        print(process.stdout)
     output = process.stdout.decode()
 
     return output.strip()
 
-def audio_to_question(filename, fps, lang):
+def audio_to_question(filename, fps, lang, debug=False):
     query_audio = wavio.write(filename, record_query(fps), fps, sampwidth=3)
-
-    query = run_tts(filename, lang)
+    
+    if debug:
+        query = run_tts(filename, lang, debug=True)
+    else:
+        query = run_tts(filename, lang)
 
     # Questions format per question: [score, lang_b_q, lang_b_ans, eng_q, eng_ans]
     questions = select_question(query.split(), import_questions(sys.argv[1]), lang)
@@ -61,7 +67,7 @@ def main():
     [simple.Text("Press the button below to record your question (in English),  and the system will find the closest question. You will have about 5 seconds to record your question.\nIf an appropriate question does not appear in the drop down once you submit, please submit again. If it does, select and confirm to receive the questions and answers.", font='25')],
     [simple.Text("Below you can choose wheter to search with Yup'ik or English speech.")],
     [simple.Radio('English', 'search_language', key='english', default='true', font='15'), simple.Radio("Yup'ik", 'search_language', key="yupik", font="15")],
-    [simple.Button('Record', font='10'), simple.Text("You can also use this tool to upload a WAV file instead. There are five sample question audio files in the resources folder you can select from.", font='25'), simple.Button('Choose File', font='10')],
+    [simple.Button('Record', font='10')],
     [simple.Text('Please select a question...', font='25')],
     [simple.Combo([], key='questions', size=(35, 10), font='25'), simple.Button('Confirm', font='10')],
     [simple.Text("English", font='25'), simple.Text(("\t"*4)+(" "*18)+"Yup'ik", font='25')],
@@ -77,7 +83,10 @@ def main():
             break
         elif gui_event == 'Record':
             lang = 'english' if values['english'] else 'yupik'
-            questions = audio_to_question('query.wav', fps, lang)
+            if len(sys.argv) > 2:
+                questions = audio_to_question('query.wav', fps, lang, debug=True)
+            else:
+                questions = audio_to_question('query.wav', fps, lang)
             q_lang = 3 if lang=='english' else 1
             app['questions'].update(values=[questions[0][1][q_lang], questions[1][1][q_lang]])
         elif gui_event == 'Confirm':
@@ -94,12 +103,6 @@ def main():
             simple.popup_scrolled(eng_faq, title='Question Listing', font='25')
         elif gui_event == "Yup'ik Questions":
             simple.popup_scrolled(esu_faq, title='Question Listing', font='25')
-        elif gui_event == 'Choose File':
-            audio_path = simple.popup_get_file("Choose which question you'd like to test. Enter or choose any WAV file in resources.", title='Choose a WAV File', default_path='../resources/', file_types=(('WAV', '*.wav')))
-            lang = 'english' if values['english'] else 'yupik'
-            questions = audio_to_question(audio_path, fps, lang)
-            q_lang = 3 if lang=='english' else 1
-            app['questions'].update(values=[questions[0][1][q_lang], questions[1][1][q_lang]])
             
     app.close()
 

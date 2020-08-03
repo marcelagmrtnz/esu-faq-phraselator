@@ -30,6 +30,7 @@ Once these commands have successfully run and the virtual environment is set up,
 ```
 ./phraselate.sh
 ```
+You can switch which instance of gui.py is called within phraselate.sh by commenting one of the lines out. Leave the line with '--debug' uncommented to have deepspeech stderr and stdout printed.<br>
 If you'd like to just run the phraselator script, use the following command.<br>
 ```
 python3 phraselate.py [--questions questions_filename] [--query "query string"] [--lang english | yupik]

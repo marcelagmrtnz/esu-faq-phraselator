@@ -7,5 +7,6 @@
 # ./dependencies.sh
 
 python3 gui.py ./utils/questions.json
+#python3 gui.py ./utils/questions.json --debug
 rm -f *.wav
 rm -rf utils/__pycache__/
