@@ -1,6 +1,6 @@
 # esu-faq-phraselator
 Closed-domain, bidirectional FAQ search phraselator built for speech search in Central Alaskan Yup'ik and English.<br>
-The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)). This system was built of previous work which can be found [here](https://github.com/marcusgabrielmartinez/faq-phraselator).
+The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)). This system was built on previous work which can be found [here](https://github.com/marcusgabrielmartinez/faq-phraselator).
 
 ## Setup Instructions
 This system has a number of dependencies. Running the following commands should take care of these in the least amount of steps.<br>
