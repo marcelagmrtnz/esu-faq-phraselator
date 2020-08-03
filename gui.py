@@ -60,7 +60,7 @@ def main():
     [simple.Text("If you aren't sure what you can ask, click here (whichever language you prefer) to see a listing of possible questions.", font='25'), simple.Button('English Questions', font='10'), simple.Button("Yup'ik Questions", font=10)],
     [simple.Text("Press the button below to record your question (in English),  and the system will find the closest question. You will have about 5 seconds to record your question.\nIf an appropriate question does not appear in the drop down once you submit, please submit again. If it does, select and confirm to receive the questions and answers.", font='25')],
     [simple.Text("Below you can choose wheter to search with Yup'ik or English speech.")],
-    [simple.Radio('English', 'search_language', key='english', default='true', font='15'), simple.Radio("Yup'ik", "search_language", key="yupik", font="15")],
+    [simple.Radio('English', 'search_language', key='english', default='true', font='15'), simple.Radio("Yup'ik", 'search_language', key="yupik", font="15")],
     [simple.Button('Record', font='10'), simple.Text("You can also use this tool to upload a WAV file instead. There are five sample question audio files in the resources folder you can select from.", font='25'), simple.Button('Choose File', font='10')],
     [simple.Text('Please select a question...', font='25')],
     [simple.Combo([], key='questions', size=(35, 10), font='25'), simple.Button('Confirm', font='10')],
@@ -76,8 +76,10 @@ def main():
         if gui_event == simple.WIN_CLOSED:
             break
         elif gui_event == 'Record':
-            questions = audio_to_question('query.wav', fps, values['search_language'])
-            app['questions'].update(values=[questions[0][1][3], questions[1][1][3]])
+            lang = 'english' if values['english'] else 'yupik'
+            questions = audio_to_question('query.wav', fps, lang)
+            q_lang = 3 if lang=='english' else 1
+            app['questions'].update(values=[questions[0][1][q_lang], questions[1][1][q_lang]])
         elif gui_event == 'Confirm':
             for _, question in questions:
                 if values['questions'] in question:
@@ -94,8 +96,10 @@ def main():
             simple.popup_scrolled(esu_faq, title='Question Listing', font='25')
         elif gui_event == 'Choose File':
             audio_path = simple.popup_get_file("Choose which question you'd like to test. Enter or choose any WAV file in resources.", title='Choose a WAV File', default_path='../resources/', file_types=(('WAV', '*.wav')))
-            questions = audio_to_question(audio_path, fps, values['search_language'])
-            app['questions'].update(values=[questions[0][1][3], questions[1][1][3]])
+            lang = 'english' if values['english'] else 'yupik'
+            questions = audio_to_question(audio_path, fps, lang)
+            q_lang = 3 if lang=='english' else 1
+            app['questions'].update(values=[questions[0][1][q_lang], questions[1][1][q_lang]])
             
     app.close()
 
