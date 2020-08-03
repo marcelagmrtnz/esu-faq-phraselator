@@ -6,13 +6,10 @@ The GUI built for this system assumes the system is built for Central Alaskan Yu
 This system has a number of dependencies. Running the following commands should take care of these in the least amount of steps.<br>
 This system has only been tested on an OSX machine.
 ```
-wget -O ./utils/deepspeech-0.7.3-models.pbmm https://github.com/mozilla/DeepSpeech/releases/download/v0.7.3/deepspeech-0.7.3-models.pbmm
-wget -O ./utils/deepspeech-0.7.3-models.scorer https://github.com/mozilla/DeepSpeech/releases/download/v0.7.3/deepspeech-0.7.3-models.scorer
-wget -O ./utils/esu_model_500epochs.pbmm https://www.dropbox.com/s/4ztgn4vvwoglo71/esu_model_500epochs.pbmm?raw=0
-virtualenv -p python3 ./env/phraselate-venv/
-source ./env/phraselate-venv/bin/activate
-pip3 install -r ./utils/requirements.txt
+./install.sh
+. env/phraselate-venv/bin/activate
 ```
+If install.sh does not work, running the commands in the script separately should work.
 
 ### Expected File Formats
 - The FAQ JSON file should have the following format, and should be located in the utils subdirectory. An example is included in current utils subdirecotry.:<br>
