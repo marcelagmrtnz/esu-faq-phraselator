@@ -10,7 +10,7 @@ wget -O ./utils/esu_lm.scorer https://www.dropbox.com/s/09tbeqs4xzlkmaj/esu_lm.s
 
 ## Create and source virtual environment
 python3 -m venv ./env/phraselate-venv/
-source ./env/phraselate-venv/bin/activate
+. ./env/phraselate-venv/bin/activate
 
 ## Install dependencies
 pip3 install -r ./utils/requirements.txt
