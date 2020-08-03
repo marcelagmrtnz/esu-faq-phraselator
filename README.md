@@ -32,10 +32,11 @@ Once these commands have successfully run and the virtual environment is set up,
 ```
 If you'd like to just run the phraselator script, use the following command.<br>
 ```
-python3 phraselate.py [--questions questions_filename] [--query "query string"]
+python3 phraselate.py [--questions questions_filename] [--query "query string"] [--lang english | yupik]
 ```
 - '--questions' is used to specify the FAQ filename
 - '--query' is used to specify the query to be used (this is automatically filled by ASR output if the whole phraselator is used). If only phraselate.py is run, and this flag is not specified, an empty string will be queried.
+- '--lang' is used to specify the language to search with (yupik or englih). The default is English.
 
 ## References
 - [NLTK](https://www.nltk.org/)
