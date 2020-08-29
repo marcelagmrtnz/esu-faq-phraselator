@@ -59,7 +59,7 @@ Note: Testing for these results utilized the same speakers used in training, so 
 
 ## Data Sources
 - [Alaska Employees FAQ](https://labor.alaska.gov/lss/whfaq.htm)
-- [The Sound of Central Alaskan Yup'ik (Numbers, Phrases, & Sample Text](https://www.youtube.com/watch?v=ugkchkfp6dQ)
+- [The Sound of Central Alaskan Yup'ik (Numbers, Phrases, & Sample Text)](https://www.youtube.com/watch?v=ugkchkfp6dQ)
 - [Yup'ik Eskimo Dictionary, S. Jacobson](https://www.uaf.edu/danl/project-updates/steven-jacobson/)
 - [American Bible Society, Yup'ik Bible Translation](https://www.americanbible.org/)
 
