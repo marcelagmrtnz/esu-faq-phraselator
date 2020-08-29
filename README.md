@@ -55,7 +55,7 @@ Average WER- 0.496
 The overall search system achieves the following results.<br>
 English search- 0.391<br>
 Yup'ik search- 0.848<br>
-Note: Testing for these results utilized the same speakers used in training, so the system is likely very speaker-dependent. In addition, it is certainly closed-domain.
+Note: Testing for these results utilized the same speakers used in training, so the system is likely very speaker-dependent. In addition, it is certainly closed-domain. Overall system results were tested without live recording, and results can vary widely depending on hardware used to record, etc.
 
 ## Data Sources
 - [Alaska Employees FAQ](https://labor.alaska.gov/lss/whfaq.htm)
