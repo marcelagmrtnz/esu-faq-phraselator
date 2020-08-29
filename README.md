@@ -51,7 +51,7 @@ The Yup'ik acoustic and language models were built using Mozilla's DeepSpeech fr
 The model achieves the following results, with the scorer enabled.<br>
 Average WER- 0.496
 
-### Overall Sytem
+### Overall System
 The overall search system achieves the following results.<br>
 English search- 0.391<br>
 Yup'ik search- 0.848<br>
