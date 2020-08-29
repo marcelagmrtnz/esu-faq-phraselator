@@ -5,3 +5,4 @@ utils/deepspeech-0.7.3-models.pbmm
 utils/deepspeech-0.7.3-models.scorer
 utils/esu_lm.scorer
 utils/esu_model_500epochs.pbmm
+utils/esu_models/*

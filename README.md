@@ -1,12 +1,13 @@
 # esu-faq-phraselator
 Closed-domain, bidirectional FAQ search phraselator built for speech search in Central Alaskan Yup'ik and English.<br>
-The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)). This system was built on previous work which can be found [here](https://github.com/marcusgabrielmartinez/faq-phraselator).
+The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)).<br>
+This was built as part of a graduate-level capstone project at the University of Washington, Summer 2020.
 
 ## Setup Instructions
 This system has a number of dependencies. Running the following commands should take care of these in the least amount of steps.<br>
 This system has only been tested on an OSX machine.
 ```
-./downloads.sh
+./models.sh
 python3 -m venv ./env/phraselate-venv/
 source ./env/phraselate-venv/bin/activate
 ./dependencies.sh
@@ -37,7 +38,28 @@ python3 phraselate.py [--questions questions_filename] [--query "query string"] 
 ```
 - '--questions' is used to specify the FAQ filename
 - '--query' is used to specify the query to be used (this is automatically filled by ASR output if the whole phraselator is used). If only phraselate.py is run, and this flag is not specified, an empty string will be queried.
-- '--lang' is used to specify the language to search with (yupik or englih). The default is English.
+- '--lang' is used to specify the language to search with (yupik or english). The default is English.
+
+## Yup'ik Models
+The Yup'ik acoutic and language models were built using Mozilla's DeepSpeech framework. The model is based on Mozilla's standard English acoustic model, and fine-tuned with Yup'ik acoustic data (cited below, in addition to data collected from a heritage Yup'ik speaker). The acoustic model was fine-tuned for 653 epochs. The langauge model was built using DeepSpeech's KenLM langauge model builder (referred to by DeepSpeech as a 'scorer').
+
+## Results
+
+### DeepSpeech Model
+The model achieves the following results, with the scorer enabled.<br>
+Average WER- 0.496
+
+### Overall Sytem
+The overall search system achieves the following results.<br>
+English search- 0.391<br>
+Yup'ik search- 0.848<br>
+Note: Testing for these results utilized the same speakers used in training, so the system is likely very speaker-dependent. In addition, it is certainly closed-domain.
+
+## Data Sources
+- [Alaska Employees FAQ](https://labor.alaska.gov/lss/whfaq.htm)
+- [The Sound of Central Alaskan Yup'ik (Numbers, Phrases, & Sample Text](https://www.youtube.com/watch?v=ugkchkfp6dQ)
+- [Yup'ik Eskimo Dictionary, S. Jacobson](https://www.uaf.edu/danl/project-updates/steven-jacobson/)
+- [American Bible Society, Yup'ik Bible Translation](https://www.americanbible.org/)
 
 ## References
 - [NLTK](https://www.nltk.org/)

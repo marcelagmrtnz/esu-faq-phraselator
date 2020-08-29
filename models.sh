@@ -10,8 +10,7 @@ wget -O ./utils/deepspeech-0.7.3-models.scorer https://github.com/mozilla/DeepSp
 cat utils/esu_models/* > utils/esu_models.tar.gz
 tar -xzf utils/esu_models.tar.gz
 mv esu_models/* utils/
-rm -rf esu_models/; rm -rf utils/esu_models/;
-rm utils/esu_models.tar.gz
+rm -rf esu_models/; rm utils/esu_models.tar.gz;
 
 ## Instruct to create and source virtual environment
 echo "DONE! Run the following commands next:"
