@@ -16,8 +16,8 @@ source ./env/phraselate-venv/bin/activate
 ```
 
 ### Expected File Formats
-- The FAQ JSON file should have the following format, and should be located in the utils subdirectory. An example is included in current utils subdirecotry.:<br>
-This example FAQ file was scraped from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)).
+The FAQ JSON file should have the following format, and should be located in the utils subdirectory. An example is included in current utils subdirecotry.:<br>
+This example FAQ file was scraped from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)).<br>
 ```
 {
 'key': [
@@ -38,12 +38,12 @@ If you'd like to just run the phraselator script, use the following command.<br>
 ```
 python3 phraselate.py [--questions questions_filename] [--query "query string"] [--lang english | yupik]
 ```
-- '--questions' is used to specify the FAQ filename
-- '--query' is used to specify the query to be used (this is automatically filled by ASR output if the whole phraselator is used). If only phraselate.py is run, and this flag is not specified, an empty string will be queried.
-- '--lang' is used to specify the language to search with (yupik or english). The default is English.
+- ```--questions``` is used to specify the FAQ filename
+- ```--query``` is used to specify the query to be used (this is automatically filled by ASR output if the whole phraselator is used). If only phraselate.py is run, and this flag is not specified, an empty string will be queried.
+- ```--lang``` is used to specify the language to search with (yupik or english). The default is English.
 
 ## Yup'ik Models
-The Yup'ik acoutic and language models were built using Mozilla's DeepSpeech framework. The model is based on Mozilla's standard English acoustic model, and fine-tuned with Yup'ik acoustic data (cited below, in addition to data collected from a heritage Yup'ik speaker). The acoustic model was fine-tuned for 653 epochs. The langauge model was built using DeepSpeech's KenLM langauge model builder (referred to by DeepSpeech as a 'scorer').
+The Yup'ik acoustic and language models were built using Mozilla's DeepSpeech framework. The model is based on Mozilla's standard English acoustic model, and fine-tuned with Yup'ik acoustic data (cited below, in addition to data collected from a heritage Yup'ik speaker). The acoustic model was fine-tuned for 653 epochs. The langauge model was built using DeepSpeech's KenLM langauge model builder (referred to by DeepSpeech as a 'scorer').
 
 ## Results
 
