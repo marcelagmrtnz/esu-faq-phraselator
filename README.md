@@ -1,7 +1,7 @@
 # esu-faq-phraselator
 Closed-domain, bidirectional FAQ search phraselator built for speech search in Central Alaskan Yup'ik (ISO 639-3 esu) and English (ISO 639-3 eng).<br>
 The GUI built for this system assumes the system is built for Central Alaskan Yup'ik, and searches an FAQ from the Alaska state government Labor Standards and Safety Division's Wage and Hour page (available [here](https://labor.alaska.gov/lss/whfaq.htm)).<br>
-Yup'ik data and consultation for this project were provided by [Lonny Strunk](https://github.com/lonnystrunk).<br>
+Yup'ik data and consultation for this project were provided by L2 heritage speaker, and Yup'ik researcher [Lonny Strunk](https://github.com/lonnystrunk).<br>
 This was built as part of a graduate-level capstone project at the University of Washington, Summer 2020, and built on previous work completed as part of a graduate-level course at the University of Washington, Spring 2020.
 - Spring 2020: LING 575- Speech Technology for Endangered Languages (Prof: Dr. Gina-Anne Levow)
 - Summer 2020: LING 600- Capstone Project (Advisor: Dr. Gina-Anne Levow)
